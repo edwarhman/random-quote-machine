@@ -1,0 +1,9 @@
+.quoteBox {
+    max-width: 400px;
+    margin-top: 30vh;
+    margin-right: auto;
+}
+
+.linksList {
+    list-style: none;
+}
