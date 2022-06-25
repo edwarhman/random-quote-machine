@@ -37,7 +37,7 @@ class Presentational extends React.Component {
             <Col>
               <ul className={styles.linksList}>
                 <li>
-                  <a id="tweet-quote" href="#">
+                  <a id="tweet-quote" className="twitter-share-button" href={`https://twitter.com/intent/tweet?text=${this.props.quote.text}%20${this.props.quote.author}`} target="_blank" rel="noopener noreferrer">
                     Tweet quote
                   </a>
                 </li>
