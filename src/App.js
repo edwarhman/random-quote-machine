@@ -1,11 +1,11 @@
-import React from 'react';
-import './App.css';
-import QuoteMachine from './features/QuoteMachine/QuoteMachine';
+import React from "react";
+import "./App.css";
+import QuoteMachine from "./features/QuoteMachine/QuoteMachine";
 
 function App() {
   return (
     <div className="App">
-    <QuoteMachine></QuoteMachine>
+      <QuoteMachine></QuoteMachine>
     </div>
   );
 }
