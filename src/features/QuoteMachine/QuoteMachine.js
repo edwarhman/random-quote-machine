@@ -20,6 +20,10 @@ class Presentational extends React.Component {
     this.props.setNewQuote();
   }
 
+    componentDidMount() {
+        this.props.setNewQuote();
+    }
+
   render() {
     return (
       <div id="quote-box" className={styles.quoteBox + quoteBoxBootstrap}>
