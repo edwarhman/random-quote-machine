@@ -42,7 +42,7 @@ class Presentational extends React.Component {
                   </a>
                 </li>
                 <li>
-                  <a id="repository" href="#">
+                    <a id="repository" href="https://github.com/edwarhman/random-quote-machine">
                     Repository
                   </a>
                 </li>
