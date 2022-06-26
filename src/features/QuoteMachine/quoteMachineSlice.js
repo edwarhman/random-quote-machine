@@ -1,13 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  quote: "Click the button to get a random quote",
+  quote: "",
   author: "",
 };
 
 const createNewQuote = (state, action) => {
   state.quote = action.payload.content;
   state.author = action.payload.author;
+};
+
+export const selectQuote = (state) => {
+  return state;
 };
 
 export const fetchQuote = createAsyncThunk(
@@ -26,5 +30,4 @@ const quoteMachineSlice = createSlice({
   },
 });
 
-export const { newQuote } = quoteMachineSlice.actions;
 export default quoteMachineSlice.reducer;
