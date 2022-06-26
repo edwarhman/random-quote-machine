@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import QuoteMachine from "./features/QuoteMachine/QuoteMachine";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <QuoteMachine></QuoteMachine>

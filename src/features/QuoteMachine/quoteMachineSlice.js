@@ -10,6 +10,10 @@ const createNewQuote = (state, action) => {
   state.author = action.payload.author;
 };
 
+export const selectQuote = (state) => {
+  return state;
+};
+
 export const fetchQuote = createAsyncThunk(
   "quoteMachine/fetchQuote",
   async () => {
