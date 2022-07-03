@@ -20,13 +20,19 @@ class Presentational extends React.Component {
     this.props.setNewQuote();
   }
 
-  render() {
-      this.props.setBookIndex();
-
-      if(this.props.quote.author === "") {
-          this.newQuote();
+    async componentDidMount() {
+      if(this.props.quote.bookIndex.length === 0) {
+        await this.props.setBookIndex();
+        return <div>loading</div>
       }
 
+      if(this.props.quote.author === "") {
+          await this.newQuote();
+          return <div>hola</div>
+      }
+
+    }
+  render() {
     return (
       <div
         className={styles.quoteContainer}
@@ -83,7 +89,6 @@ class Presentational extends React.Component {
 const colors = ["plum", "darkred", "darkgreen", "blueviolet", "cornflowerblue"];
 function getRandomColor() {
   const idx = Math.floor(Math.random() * colors.length);
-  console.log(idx);
   return colors[idx];
 }
 
