@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchQuote } from "./quoteMachineSlice";
+import { fetchQuote, fetchIndex } from "./quoteMachineSlice";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -20,11 +20,13 @@ class Presentational extends React.Component {
     this.props.setNewQuote();
   }
 
-  componentDidMount() {
-    this.props.setNewQuote();
-  }
-
   render() {
+      this.props.setBookIndex();
+
+      if(this.props.quote.author === "") {
+          this.newQuote();
+      }
+
     return (
       <div
         className={styles.quoteContainer}
@@ -90,6 +92,7 @@ function getRandomColor() {
 const mapStateToProps = (state) => {
   return {
     quote: {
+        bookIndex: state.quoteMachine.bookIndex,
       text: state.quoteMachine.quote,
       author: state.quoteMachine.author,
     },
@@ -101,6 +104,9 @@ const mapDispatchToProps = (dispatch) => {
     setNewQuote: () => {
       dispatch(fetchQuote());
     },
+      setBookIndex: () => {
+        dispatch(fetchIndex());
+      },
   };
 };
 
