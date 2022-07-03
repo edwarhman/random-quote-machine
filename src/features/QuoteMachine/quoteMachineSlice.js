@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-require('dotenv').config();
 
+const API_KEY="f009c19b69ec55337b60eec3f65e2447";
 const initialState = {
     bookIndex: [],
   quote: "",
@@ -13,7 +13,7 @@ const createNewQuote = (state, action) => {
 };
 
 const setIndex = (state, action) => {
-    state.bookIndex = action.payload.bookIndex;
+    state.bookIndex = action.payload.books;
 };
 
 export const selectQuote = (state) => {
@@ -23,7 +23,7 @@ export const selectQuote = (state) => {
 export const fetchIndex = createAsyncThunk(
     "quoteMachine/fetchIndex",
     async ()=> {
-        const response = await fetch(`https://api.biblia.com/v1/bible/contents/LEB?key=${process.env}`);
+        const response = await fetch(`https://api.biblia.com/v1/bible/contents/LEB?key=${API_KEY}`);
         return await response.json();
     }
 );
