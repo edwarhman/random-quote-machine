@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { randomVerse} from "../../utils.js";
+import { randomVerse } from "../../utils.js";
 
 import styles from "./QuoteMachine.module.css";
 
@@ -18,19 +18,18 @@ class Presentational extends React.Component {
   }
 
   newQuote() {
-      this.props.setNewQuote(randomVerse(this.props.quote.bookIndex));
+    this.props.setNewQuote(randomVerse(this.props.quote.bookIndex));
   }
 
-    async componentWillMount() {
-      if(this.props.quote.bookIndex.length === 0) {
-        await this.props.setBookIndex();
-      }
-
-      if(this.props.quote.quote === "") {
-          await this.newQuote();
-      }
-
+  async componentWillMount() {
+    if (this.props.quote.bookIndex.length === 0) {
+      await this.props.setBookIndex();
     }
+
+    if (this.props.quote.quote === "") {
+      await this.newQuote();
+    }
+  }
   render() {
     return (
       <div
@@ -91,14 +90,12 @@ function getRandomColor() {
   return colors[idx];
 }
 
-
-
 // React Redux
 
 const mapStateToProps = (state) => {
   return {
     quote: {
-        bookIndex: state.quoteMachine.bookIndex,
+      bookIndex: state.quoteMachine.bookIndex,
       text: state.quoteMachine.quote,
       author: state.quoteMachine.author,
     },
@@ -110,9 +107,9 @@ const mapDispatchToProps = (dispatch) => {
     setNewQuote: (verseInfo) => {
       dispatch(fetchQuote(verseInfo));
     },
-      setBookIndex: () => {
-        dispatch(fetchIndex());
-      },
+    setBookIndex: () => {
+      dispatch(fetchIndex());
+    },
   };
 };
 
