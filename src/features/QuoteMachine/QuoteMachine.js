@@ -25,11 +25,14 @@ class Presentational extends React.Component {
     if (this.props.quote.bookIndex.length === 0) {
       await this.props.setBookIndex();
     }
-
-    if (this.props.quote.quote === "") {
+    if (this.props.quote.author === "") {
+      console.log("fetch verse");
+      console.log(this.props.quote.bookIndex);
       await this.newQuote();
     }
   }
+
+  async componentDidMount() {}
   render() {
     return (
       <div
@@ -49,7 +52,7 @@ class Presentational extends React.Component {
             <Row>
               <Col>
                 <Button id="new-quote" onClick={this.newQuote}>
-                  New quote
+                  Nuevo versículo
                 </Button>
               </Col>
               <Col>
@@ -62,7 +65,7 @@ class Presentational extends React.Component {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Tweet quote
+                      twittear versículo
                     </a>
                   </li>
                   <li>
@@ -70,7 +73,7 @@ class Presentational extends React.Component {
                       id="repository"
                       href="https://github.com/edwarhman/random-quote-machine"
                     >
-                      Repository
+                      Repositorio
                     </a>
                   </li>
                 </ul>
