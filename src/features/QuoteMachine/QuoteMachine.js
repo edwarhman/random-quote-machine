@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { randomVerse } from "../../utils.js";
 
 import styles from "./QuoteMachine.module.css";
 
@@ -17,21 +18,21 @@ class Presentational extends React.Component {
   }
 
   newQuote() {
-    this.props.setNewQuote();
+    this.props.setNewQuote(randomVerse(this.props.quote.bookIndex));
   }
 
-    async componentDidMount() {
-      if(this.props.quote.bookIndex.length === 0) {
-        await this.props.setBookIndex();
-        return <div>loading</div>
-      }
-
-      if(this.props.quote.author === "") {
-          await this.newQuote();
-          return <div>hola</div>
-      }
-
+  async componentWillMount() {
+    if (this.props.quote.bookIndex.length === 0) {
+      await this.props.setBookIndex();
     }
+    if (this.props.quote.author === "") {
+      console.log("fetch verse");
+      console.log(this.props.quote.bookIndex);
+      await this.newQuote();
+    }
+  }
+
+  async componentDidMount() {}
   render() {
     return (
       <div
@@ -51,7 +52,7 @@ class Presentational extends React.Component {
             <Row>
               <Col>
                 <Button id="new-quote" onClick={this.newQuote}>
-                  New quote
+                  Nuevo versículo
                 </Button>
               </Col>
               <Col>
@@ -64,7 +65,7 @@ class Presentational extends React.Component {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Tweet quote
+                      twittear versículo
                     </a>
                   </li>
                   <li>
@@ -72,7 +73,7 @@ class Presentational extends React.Component {
                       id="repository"
                       href="https://github.com/edwarhman/random-quote-machine"
                     >
-                      Repository
+                      Repositorio
                     </a>
                   </li>
                 </ul>
@@ -97,7 +98,7 @@ function getRandomColor() {
 const mapStateToProps = (state) => {
   return {
     quote: {
-        bookIndex: state.quoteMachine.bookIndex,
+      bookIndex: state.quoteMachine.bookIndex,
       text: state.quoteMachine.quote,
       author: state.quoteMachine.author,
     },
@@ -106,12 +107,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setNewQuote: () => {
-      dispatch(fetchQuote());
+    setNewQuote: (verseInfo) => {
+      dispatch(fetchQuote(verseInfo));
     },
-      setBookIndex: () => {
-        dispatch(fetchIndex());
-      },
+    setBookIndex: () => {
+      dispatch(fetchIndex());
+    },
   };
 };
 
